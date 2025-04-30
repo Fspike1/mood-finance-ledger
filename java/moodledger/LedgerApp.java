@@ -115,6 +115,7 @@ public class LedgerApp {
         System.out.println("Please enter the amount: ");
         float amount = scanner.nextFloat();
         scanner.nextLine();
+        System.out.println("Deposit Received: " + amount);
 
 
         Transactions newDeposit = new Transactions(date,time,description,vendor,amount);
@@ -136,9 +137,6 @@ public class LedgerApp {
 
 
     }
-
-
-
     public static void makePaymentScreen(Scanner scanner , List<Transactions> newTransactions) {
         System.out.println("=============================");
         System.out.println("Make A Payment Screen");
@@ -165,6 +163,7 @@ public class LedgerApp {
         System.out.println("Please enter the amount: ");
         float amount = scanner.nextFloat()*-1;//*-1 to show that user is making a payment
         scanner.nextLine();
+        System.out.println("Payment received: " + amount);
 
 
         Transactions newPayment = new Transactions(date,time,description,vendor,amount);
