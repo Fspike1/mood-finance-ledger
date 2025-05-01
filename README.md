@@ -92,7 +92,7 @@ git clone https://github.com/Fspike1/mood-finance-ledger.git
 
 ## 💡 Interesting Code Snippet: `customSearch()`
 
-[View the customSearch method in GitHub ›](https://github.com/Fspike1/mood-finance-ledger/src/java/moodledger/Ledger.java#L474)
+[View the customSearch method in GitHub ›](https://github.com/Fspike1/mood-finance-ledger/blob/main/src/java/moodledger/Ledger.java#L474)
 
 
 ```java
