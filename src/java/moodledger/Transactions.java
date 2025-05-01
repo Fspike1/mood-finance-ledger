@@ -22,13 +22,13 @@ public class Transactions {
 
     @Override
     public String toString(){
-        return "Date:" + date + "Time:" + time + "Product Description:"+ description + "Vendor:" + vendor + "Amount:$" + amount;
+        return "Date:" + date + " | Time:" + time + " | Product Description:"+ description + " | Vendor:" + vendor + "| Amount:$" + amount;
 
     }
-    public  String getDate(){//in order to use get in the main, you must add it here first
+    public  String getDate(){
+        //in order to use get in the main, you must add it here first
         return date;
     }
-
     public String getTime(){
         return time;
     }

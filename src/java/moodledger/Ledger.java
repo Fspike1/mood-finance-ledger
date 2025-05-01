@@ -59,19 +59,24 @@ public class Ledger {
             System.out.println("======= All Entries =======");
 
             while ((line = br.readLine()) != null) {//This makes sure each line of the file is read until there's null left to read
+
+                if(line.trim().isEmpty())
+                    continue;
                 if (line.contains("Date")) {
                     continue;
                 }
 
                 //Add split in your while loop so that it will do everything in the loop. Outside the loop it won't work
                 //split creates an array of strings[date,time,description,vendor,amount]
-                String[] parts = line.split(" \\| ");
+                String[] parts = line.split("\\|");
+                if (parts.length < 5)
+                    continue;
                 Transactions entry = new Transactions(
-                        parts[0],//this is the date
-                        parts[1],//time
-                        parts[2],//description
-                        parts[3],//vendor
-                        Float.parseFloat(parts[4])//in order to turn a string(Amount is a string) into float I have to use parse
+                        parts[0].trim().replaceAll("\\s",""),//this is the date
+                        parts[1].trim(),//time
+                        parts[2].trim().toLowerCase(),//description
+                        parts[3].trim().toLowerCase(),//vendor
+                        Float.parseFloat(parts[4].trim())//in order to turn a string(Amount is a string) into float I have to use parse
                 );
 
                 System.out.println("These are all your entries: ");
@@ -99,19 +104,23 @@ public class Ledger {
             System.out.println("======= Deposits =======");
 
             while ((line = br.readLine()) != null) {//This makes sure each line of the file is read until there's null left to read
+                if(line.trim().isEmpty())
+                    continue;
                 if (!line.contains("Paid")) {
                     continue;
                 }
 
                 //Add split in your while loop so that it will do everything in the loop. Outside the loop it won't work
                 //split creates an array of strings[date,time,description,vendor,amount]
-                String[] parts = line.split(" \\| ");
+                String[] parts = line.split("\\|");
+                if (parts.length < 5)
+                    continue;
                 Transactions entry = new Transactions(
-                        parts[0],//this is the date
-                        parts[1],//time
-                        parts[2],//description
-                        parts[3],//vendor
-                        Float.parseFloat(parts[4])//in order to turn a string(Amount is a string) into float I have to use parse
+                        parts[0].trim().replaceAll("\\s", ""),//this is the date
+                        parts[1].trim(),//time
+                        parts[2].trim().toLowerCase(),//description
+                        parts[3].trim().toLowerCase(),//vendor
+                        Float.parseFloat(parts[4].trim())//in order to turn a string(Amount is a string) into float I have to use parse
                 );
 
                 System.out.println("These are your deposits:");
@@ -140,19 +149,27 @@ public class Ledger {
             String line; //have to create a variable to make sure each line is being held properly
 
             while ((line = br.readLine()) != null) {//This makes sure each line of the file is read until there's null left to read
+
+                if(line.trim().isEmpty())
+                    continue;
                 if (line.contains("date")) {
                     continue;
                 }
 
                 //Add split in your while loop so that it will do everything in the loop. Outside the loop it won't work
                 //split creates an array of strings[date,time,description,vendor,amount]
-                String[] parts = line.split(" \\| ");
+                String[] parts = line.split("\\|");
+                if (parts.length < 5)
+                    continue;
+                if(parts[0].toLowerCase().contains("date")){
+                    continue;
+                }
                 Transactions entry = new Transactions(
                         parts[0],//this is the date
-                        parts[1],//time
-                        parts[2],//description
-                        parts[3],//vendor
-                        Float.parseFloat(parts[4])//in order to turn a string(Amount is a string) into float I have to use parse
+                        parts[1].trim(),//time
+                        parts[2].trim().toLowerCase(),//description
+                        parts[3].trim().toLowerCase(),//vendor
+                        Float.parseFloat(parts[4].trim())//in order to turn a string(Amount is a string) into float I have to use parse
                 );
                 if (entry.getAmount() >= 0)
                     continue;
@@ -182,10 +199,12 @@ public class Ledger {
             System.out.println("3) Year to Date");
             System.out.println("4) Previous Year");
             System.out.println("5) Search by Vendor");
+            System.out.println("6) Custom Search");
             System.out.println("0) Back to Ledger Menu");
             System.out.println("Please choose an option: ");
 
             int chooseDate = scanner.nextInt();
+            scanner.nextLine();
             switch (chooseDate) {
                 case 1:
                     showMonthToDate();
@@ -202,6 +221,8 @@ public class Ledger {
                 case 5:
                     searchByVendor(scanner);
                     break;
+                case 6:
+                    customSearch(scanner);
                 case 0:
                     System.out.println("Returning to Ledger Menu");
                     inReportsMenu = false;//When this is false, it exits the loop
@@ -231,15 +252,19 @@ public class Ledger {
 
             String line;
             while ((line = br.readLine()) != null) {
+                if(line.trim().isEmpty())
+                    continue;
                 if (line.contains("Date")){
                     continue;
                 }
-                String[] parts = line.split(" \\| ");//This line makes each line in CSV file look like this: 2025-04-25 | 07:04:33 | Mood Journal | EnhancedMoods | 13.47
-                String date = parts[0];//this format: yyyy-MM-dd
-                String time = parts[1]; //this format: hh:mm:ss
-                String description = parts[2];
-                String vendor = parts[3];
-                String amount = parts[4];//has to be turned into a float(using parse)
+                String[] parts = line.split("\\|");//This line makes each line in CSV file look like this: 2025-04-25 | 07:04:33 | Mood Journal | EnhancedMoods | 13.47
+                if (parts.length < 5)
+                    continue;
+                String date = parts[0].trim().replaceAll("\\s","");//this format: yyyy-MM-dd
+                String time = parts[1].trim(); //this format: hh:mm:ss
+                String description = parts[2].trim().toLowerCase();
+                String vendor = parts[3].trim().toLowerCase();
+                String amount = parts[4].trim();//has to be turned into a float(using parse)
 
                 LocalDate entryDate = LocalDate.parse(date);
 
@@ -273,15 +298,20 @@ public class Ledger {
 
             String line;
             while ((line = br.readLine()) != null) {
+                if(line.trim().isEmpty())
+                    continue;
                 if (line.contains("Date")){
                     continue;
                 }
-                String[] parts = line.split(" \\| ");//This line makes each line in CSV file look like this: 2025-04-25 | 07:04:33 | Mood Journal | EnhancedMoods | 13.47
+                String[] parts = line.split("\\|");//This line makes each line in CSV file look like this: 2025-04-25 | 07:04:33 | Mood Journal | EnhancedMoods | 13.47
+                if (parts.length < 5)
+                    continue;
+                if (parts[0].toLowerCase().contains("date")) continue;
                 String date = parts[0];//this format: yyyy-MM-dd
-                String time = parts[1]; //this format: hh:mm:ss
-                String description = parts[2];
-                String vendor = parts[3];
-                String amount = parts[4];//has to be turned into a float(using parse)
+                String time = parts[1].trim(); //this format: hh:mm:ss
+                String description = parts[2].trim().toLowerCase();
+                String vendor = parts[3].trim().toLowerCase();
+                String amount = parts[4].trim();//has to be turned into a float(using parse)
 
                 LocalDate entryDate = LocalDate.parse(date);
 
@@ -313,15 +343,20 @@ public class Ledger {
 
                 String line;
                 while ((line = br.readLine()) != null) {
+                    if(line.trim().isEmpty())
+                        continue;
                     if (line.contains("Date")){
                         continue;
                     }
                     String[] parts = line.split(" \\| ");//This line makes each line in CSV file look like this: 2025-04-25 | 07:04:33 | Mood Journal | EnhancedMoods | 13.47
-                    String date = parts[0];//this format: yyyy-MM-dd
-                    String time = parts[1]; //this format: hh:mm:ss
-                    String description = parts[2];
-                    String vendor = parts[3];
-                    String amount = parts[4];//has to be turned into a float(using parse)
+                    if (parts.length < 5)
+                        continue;
+                    if (parts[0].toLowerCase().contains("date")) continue;
+                    String date = parts[0].trim().replaceAll("\\s","");//this format: yyyy-MM-dd
+                    String time = parts[1].trim(); //this format: hh:mm:ss
+                    String description = parts[2].trim().toLowerCase();
+                    String vendor = parts[3].trim().toLowerCase();
+                    String amount = parts[4].trim();//has to be turned into a float(using parse)
 
                     LocalDate entryDate = LocalDate.parse(date);
 
@@ -362,15 +397,20 @@ public class Ledger {
 
             String line;
             while ((line = br.readLine()) != null) {
+                if(line.trim().isEmpty())
+                    continue;
                 if (line.contains("Date")){
                     continue;
                 }
-                String[] parts = line.split(" \\| ");//This line makes each line in CSV file look like this: 2025-04-25 | 07:04:33 | Mood Journal | EnhancedMoods | 13.47
-                String date = parts[0];//this format: yyyy-MM-dd
-                String time = parts[1]; //this format: hh:mm:ss
-                String description = parts[2];
-                String vendor = parts[3];
-                String amount = parts[4];//has to be turned into a float(using parse)
+                String[] parts = line.split("\\|");//This line makes each line in CSV file look like this: 2025-04-25 | 07:04:33 | Mood Journal | EnhancedMoods | 13.47
+                if (parts.length < 5)
+                    continue;
+                if (parts[0].toLowerCase().contains("date")) continue;
+                String date = parts[0].trim().replaceAll("\\s","");//this format: yyyy-MM-dd
+                String time = parts[1].trim(); //this format: hh:mm:ss
+                String description = parts[2].trim().toLowerCase();
+                String vendor = parts[3].trim().toLowerCase();
+                String amount = parts[4].trim();//has to be turned into a float(using parse)
 
                 LocalDate entryDate = LocalDate.parse(date);
 
@@ -402,14 +442,19 @@ public class Ledger {
             BufferedReader br = new BufferedReader(fr);
             String line;
             while ((line = br.readLine()) != null){
-               if (line.contains("Date")) {
+                if(line.trim().isEmpty())
+                    continue;
+                if (line.contains("Date")) {
                    continue;
                }
-               String[] parts = line.split(" \\| ");
-               String date = parts[0].trim();
+               String[] parts = line.split("\\|");
+                if (parts.length < 5)
+                    continue;
+                if (parts[0].toLowerCase().contains("date")) continue;
+               String date = parts[0].trim().replaceAll("\\s","");
                 String time = parts[1].trim();
-                String description = parts[2].trim();
-                String vendor = parts[3].trim();
+                String description = parts[2].trim().toLowerCase();
+                String vendor = parts[3].trim().toLowerCase();
                 String amount = parts[4].trim();
               if (vendor.trim().equalsIgnoreCase(searchVendor)) {
                   Transactions entry = new Transactions(date,time,description,vendor,Float.parseFloat(amount));
@@ -425,6 +470,77 @@ public class Ledger {
 
 
     }
+
+    public static void customSearch(Scanner scanner) {
+        System.out.println("======= Custom Search =======");
+
+        System.out.println("Enter start date (yyyy-MM-dd) or leave blank:3");
+        String startDate = scanner.nextLine().trim();
+
+        System.out.println("Enter end date (yyyy-MM-dd) or leave blank:");
+        String endDate = scanner.nextLine().trim();
+
+        System.out.println("Enter description keyword or leave blank:");
+        String descriptionSt = scanner.nextLine().trim().toLowerCase();
+
+        System.out.println("Enter the vendor or leave blank:");
+        String vendorSt = scanner.nextLine().trim().toLowerCase();
+
+        System.out.println("Enter amount or leave blank:");
+        String amountSt = scanner.nextLine().trim();
+
+        System.out.println("\nMatching Entries:\n");
+
+        try {
+            FileReader fr = new FileReader("MoodLedgerTransactions.csv");
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                if (line.trim().isEmpty()) continue;
+                if (line.contains("Date")) continue;
+
+                String[] parts = line.split("\\|");
+                if (parts.length < 5)
+                    continue;
+                if (parts[0].toLowerCase().contains("date")) continue;
+
+                String date = parts[0].trim().replaceAll("\\s", "");
+                String time = parts[1].trim();
+                String description = parts[2].trim();
+                String vendor = parts[3].trim();
+                String amount = parts[4].trim();
+
+                LocalDate entryDate = LocalDate.parse(date);
+                LocalDate start = startDate.isEmpty() ? null : LocalDate.parse(startDate);
+                LocalDate end = endDate.isEmpty() ? null : LocalDate.parse(endDate);
+
+                boolean matches = true;
+
+                if (start != null && entryDate.isBefore(start)) matches = false;
+                if (end != null && entryDate.isAfter(end)) matches = false;
+                if (!descriptionSt.isEmpty() && !description.toLowerCase().contains(descriptionSt)) matches = false;
+                if (!vendorSt.isEmpty() && !vendor.toLowerCase().contains(vendorSt)) matches = false;
+                if (!amountSt.isEmpty() && !amount.toLowerCase().contains(amountSt)) matches = false;
+
+                if (matches) {
+                    Transactions entry = new Transactions(date, time, description, vendor, Float.parseFloat(amount));
+                    System.out.println("Custom Match Found: " + entry);
+                }
+            }
+
+            br.close();
+            fr.close();
+            System.out.println("\nPress Enter to return to Reports Menu");
+            scanner.nextLine();
+
+
+        } catch (IOException e) {
+            System.out.println("I can't read this!");
+        }
+    }
+
+
 
 
 

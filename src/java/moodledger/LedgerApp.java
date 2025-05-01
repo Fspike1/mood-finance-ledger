@@ -110,7 +110,7 @@ public class LedgerApp {
         String description = scanner.nextLine();
 
         System.out.println("Enter vendor's name:");
-        String vendor = scanner.nextLine();
+        String vendor = scanner.nextLine().trim()+ "Paid";
 
         System.out.println("Please enter the amount: ");
         float amount = scanner.nextFloat();
