@@ -10,10 +10,10 @@ Mood Finance Ledger is a Java CLI application designed to help users track finan
 ## 🛠️ Features
 
 - 🏠 **Home Menu**
-  - D) Add Deposit
-  - P) Make Payment (Debit)
-  - L) Ledger
-  - X) Exit
+  - 1) Add Deposit
+  - 2) Make Payment (Debit)
+  - 3) Ledger
+  - 4) Exit
 
 - 📓 **Ledger Menu**
   - A) All Entries
@@ -59,20 +59,12 @@ Mood Finance Ledger is a Java CLI application designed to help users track finan
 4- Exit
 ```
 
-### 🔍 Custom Search Example
+### 🔍 Custom Search Demo
 
 ```
-Found Matching Entry:
-Date: 2025-04-30
-Time: 15:32:27
-Description: Mood Journal
-Vendor: EnhancedMoods
-Amount: $13.47
+![Custom Search Demo](CustomSearch_GIF.gif)
+
 ```
-
-> (Replace these with terminal screenshots if preferred.)
-
----
 
 ## 🚀 How to Run
 
