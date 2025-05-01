@@ -11,7 +11,8 @@ import static moodledger.Ledger.ledgerScreen;
 
 
 public class LedgerApp {
-    public static void main(String[] args) throws IOException {//throws IO exception states that if there is a problem with the code, just let java crash
+    public static void main(String[] args){
+
 
         List<Transactions> transactionsList = new ArrayList<>();//this list can be accessed in every method
 
