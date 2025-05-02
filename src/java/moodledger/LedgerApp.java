@@ -107,10 +107,10 @@ public class LedgerApp {
         System.out.println("Please enter the time(hh:mm:ss):");
         String time = scanner.nextLine();
 
-        System.out.println("What did you order?:");
+        System.out.println("What did they pay for?:");
         String description = scanner.nextLine();
 
-        System.out.println("Enter vendor's name:");
+        System.out.println("Enter who paid for it?:");
         String vendor = scanner.nextLine().trim()+ "Paid";
 
         System.out.println("Please enter the amount: ");
