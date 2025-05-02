@@ -2,23 +2,7 @@ package moodledger;
 import java.util.Scanner;
 public class Demos {
     public static void main(String[] args) {
-        System.out.println("==== DEMO: Using OR (||) in a loop ====");
-        String[] lines = {
-                "2025-04-25 | 07:04:33 | Bulk Mood Journal | EnhancedMoods | -130.47",
-                "2025-04-24 | 09:07:44 | Quiet Flame Kit Paid | Kai C. | 60.74",
-                "2025-04-24 | 14:45:47 | Mood Journal Paid | Roux V. | 15.99"
-        };
-
-        for (String line : lines) {
-            // You used this condition to filter entries by specific vendors
-            if (line.contains("Kai C.") || line.contains("Roux V.")) {
-                System.out.println("Matched line with OR condition: " + line);
-            } else {
-                System.out.println("Unmatched line: " + line);
-            }
-
-
-        }
+        System.out.println("==== DEMO: Mini While Loop in a Switch Statement ====");
 
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
