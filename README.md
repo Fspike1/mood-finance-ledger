@@ -83,16 +83,7 @@ git clone https://github.com/Fspike1/mood-finance-ledger.git
 
 ## 💡 Interesting Code Snippet: `customSearch()`
 
-[View the customSearch method in GitHub ›](https://github.com/Fspike1/mood-finance-ledger/blob/main/src/java/moodledger/Ledger.java#L474)
-
-
-```java
-if (start != null && entryDate.isBefore(start)) {
-    matches = false;
-}
-if (vendor != null && !vendor.toLowerCase().contains(vendorSt)) {
-    matches = false;
-}
+![Interesting Code Demo](InterestingCodeSnippet.gif)
 ```
 
 This method filters data based on user inputs. If the user leaves a field blank, that filter is skipped. It uses `LocalDate` to handle dates and checks multiple conditions in one clean loop.
