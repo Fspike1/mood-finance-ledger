@@ -68,15 +68,13 @@ git clone https://github.com/Fspike1/mood-finance-ledger.git
 
 ## 💡 Interesting Code Snippet: `Demos.java`
 
-![Interesting Code Demo](InterestingCodeSnippet.gif)
-
-```
-
 This demo shows how a while loop inside a switch statement can be used to create a smooth, menu-based experience.
 
----
+![Interesting Code Demo](InterestingCodeSnippet.gif)
 
 ![Interesting Code Snippet in Detail](https://github.com/Fspike1/mood-finance-ledger/blob/2d282a8b723abf5dd8afa26ea88a3958971197c1/src/java/moodledger/Demos.java#L5)
+
+---
 
 ## 🧠 What I Learned
 
