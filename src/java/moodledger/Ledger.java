@@ -311,7 +311,7 @@ public class Ledger {
                 String vendor = parts[3].trim().toLowerCase();
                 String amount = parts[4].trim();//has to be turned into a float(using parse)
 
-                LocalDate entryDate = LocalDate.parse(date);
+                LocalDate entryDate = LocalDate.parse(date.trim());
 
                 if((entryDate.isEqual(firstDay) || entryDate.isAfter(firstDay)) && (entryDate.isBefore(lastDay)|| entryDate.isEqual(lastDay))) {
                     System.out.println("Previous Month: " + line);//line is what will be read by the br
@@ -431,7 +431,6 @@ public class Ledger {
         System.out.println("======= Search by Vendor =======");
         //use scanner to get vendor name from user
         System.out.println("Enter vendor name you are searching for: ");
-        scanner.nextLine();
         String searchVendor = scanner.nextLine().trim();//use trim to get rid of accidental extra spaces after input
 
 
