@@ -78,7 +78,7 @@ git clone https://github.com/Fspike1/mood-finance-ledger.git
 
 ---
 
-## 💡 Interesting Code Snippet: `customSearch()`
+## 💡 Interesting Code Snippet: `Demos.java`
 
 ![Interesting Code Demo](InterestingCodeSnippet.gif)
 
