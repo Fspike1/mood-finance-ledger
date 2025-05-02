@@ -4,8 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Ledger {
     public static void ledgerScreen(Scanner scanner, List<Transactions> newTransactions) {
@@ -50,48 +49,46 @@ public class Ledger {
     }
 
     public static void showAllEntries() {
-        //try-catch block for reading a file
         try {
+            List<String> allLines = new ArrayList<>();
+
             FileReader fr = new FileReader("MoodLedgerTransactions.csv");
-            BufferedReader br = new BufferedReader(fr);//Reads file line by line
-            String line; //have to create a variable to make sure each line is being held properly
+            BufferedReader br = new BufferedReader(fr);
+            String line;
 
-            System.out.println("======= All Entries =======");
+            while ((line = br.readLine()) != null) {
+                if (line.trim().isEmpty() || line.contains("Date")) continue;
+                allLines.add(line);
+            }
+            br.close();
 
-            while ((line = br.readLine()) != null) {//This makes sure each line of the file is read until there's null left to read
+            Collections.reverse(allLines);
 
-                if(line.trim().isEmpty())
-                    continue;
-                if (line.contains("Date")) {
-                    continue;
-                }
+            System.out.println("======= All Entries (Most Recent First) =======");
 
-                //Add split in your while loop so that it will do everything in the loop. Outside the loop it won't work
-                //split creates an array of strings[date,time,description,vendor,amount]
-                String[] parts = line.split("\\|");
-                if (parts.length < 5)
-                    continue;
+            for (String reversedLine : allLines) {
+                String[] parts = reversedLine.split("\\|");
+                if (parts.length < 5) continue;
+
                 Transactions entry = new Transactions(
-                        parts[0].trim().replaceAll("\\s",""),//this is the date
-                        parts[1].trim(),//time
-                        parts[2].trim().toLowerCase(),//description
-                        parts[3].trim().toLowerCase(),//vendor
-                        Float.parseFloat(parts[4].trim())//in order to turn a string(Amount is a string) into float I have to use parse
+                        parts[0].trim().replaceAll("\\s", ""),
+                        parts[1].trim(),
+                        parts[2].trim(),
+                        parts[3].trim(),
+                        Float.parseFloat(parts[4].trim())
                 );
 
-                System.out.println("These are all your entries: ");
                 System.out.println(entry);
-
             }
+
             System.out.println("Press Enter to return to the Ledger Menu");
             new Scanner(System.in).nextLine();
 
-            br.close();//always close before the catch but after you're done with your actions
         } catch (IOException e) {
             System.out.println("Uhh ohhh! What do we have here?");
         }
-
     }
+
 
     public static void showDepositsOnly() {
         //try-catch block for reading a file
@@ -135,6 +132,7 @@ public class Ledger {
         } catch (IOException e) {
             System.out.println("Uhh ohhh! What do we have here?");
         }
+
 
 
     }
@@ -474,7 +472,7 @@ public class Ledger {
     public static void customSearch(Scanner scanner) {
         System.out.println("======= Custom Search =======");
 
-        System.out.println("Enter start date (yyyy-MM-dd) or leave blank:3");
+        System.out.println("Enter start date (yyyy-MM-dd) or leave blank:");
         String startDate = scanner.nextLine().trim();
 
         System.out.println("Enter end date (yyyy-MM-dd) or leave blank:");
