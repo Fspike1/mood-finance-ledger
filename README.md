@@ -43,6 +43,13 @@ Inspired by the heart of a mental health app that I am working on, this tool isn
 
 ---
 
+
+
+![Mood Ledger Home Screen](https://github.com/Fspike1/mood-finance-ledger/blob/main/Mood%20ledger%20home%20screen.png?raw=true)
+
+
+
+
 ### 🎥 Custom Search Demo
 ![Custom Search Demo](CustomSearch_GIF.gif)
 
