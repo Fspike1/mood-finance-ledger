@@ -58,7 +58,8 @@ Mood Finance Ledger is a Java CLI application designed to help users track finan
 
 ```
 
-![Custom Search Demo](CustomSearch_GIF.gif)
+![Custom Search Demo](https://raw.githubusercontent.com/Fspike1/mood-finance-ledger/main/CustomSearch_GIF.gif)
+
 
 ```
 
