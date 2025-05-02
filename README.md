@@ -3,13 +3,15 @@
 
 ## 📘 Description
 
-Mood Finance Ledger is a Java CLI application designed to help users track financial transactions for personal or business use. It allows users to record deposits and payments, view and filter ledger entries, and generate reports. Transactions are saved in a `.csv` file and displayed with the newest entries first.
+Mood Finance Ledger is a simple Java CLI app designed to help you track where your money goes — and what it means to you. It lets you record deposits, log payments, and generate clear reports, all saved in a tidy .csv file with the newest entries first.
+
+Inspired by the heart of a mental health app that I am working on, this tool isn’t just about finances — it’s about noticing patterns, building awareness, and staying grounded while you grow.
 
 ---
 
 ## 🛠️ Features
 
-- 🏠 **Home Menu**
+- 🏠 **Home Screen**
   - 1) Add Deposit
   - 2) Make Payment (Debit)
   - 3) Ledger
@@ -38,21 +40,8 @@ Mood Finance Ledger is a Java CLI application designed to help users track finan
   - Vendor
   - Amount
 
-> Fields left blank will be ignored. Matching entries are filtered accordingly.
 
 ---
-
-### 🏠 Home Screen
-
-```
-================================
- MOOD LEDGER HOME SCREEN 
-=================================
-1- Add Deposit
-2- Make Payment
-3- Go to Ledger
-4- Exit
-```
 
 ### 🎥 Custom Search Demo
 ![Custom Search Demo](CustomSearch_GIF.gif)
@@ -62,8 +51,7 @@ Mood Finance Ledger is a Java CLI application designed to help users track finan
 ## 🚀 How to Run
 
 ### Prerequisites
-- Java 17 or higher
-- IntelliJ IDEA (or another IDE)
+- IntelliJ IDEA 
 
 ### Setup Steps
 
@@ -82,12 +70,13 @@ git clone https://github.com/Fspike1/mood-finance-ledger.git
 
 ![Interesting Code Demo](InterestingCodeSnippet.gif)
 
-![Interesting Code Snippet in Detail](https://github.com/Fspike1/mood-finance-ledger/blob/2d282a8b723abf5dd8afa26ea88a3958971197c1/src/java/moodledger/Demos.java#L5)
 ```
 
-This method filters data based on user inputs. If the user leaves a field blank, that filter is skipped. It uses `LocalDate` to handle dates and checks multiple conditions in one clean loop.
+This demo shows how a while loop inside a switch statement can be used to create a smooth, menu-based experience.
 
 ---
+
+![Interesting Code Snippet in Detail](https://github.com/Fspike1/mood-finance-ledger/blob/2d282a8b723abf5dd8afa26ea88a3958971197c1/src/java/moodledger/Demos.java#L5)
 
 ## 🧠 What I Learned
 
@@ -123,13 +112,13 @@ This method filters data based on user inputs. If the user leaves a field blank,
 
 ## 👩🏽‍🏫 Project Demo Checklist
 
-- [] Run through home, ledger, and report screens
-- [] Demonstrate a custom search
-- [] Show code in `customSearch()`
+- [x] Run through home, ledger, and report screens
+- [x] Demonstrate a custom search
+- [x] Show code in `customSearch()`
 - [] Answer any Q&A from the audience
 
 ---
 
 ## 📃 License (optional)
-This project is for educational purposes as part of the Pluralsight Java Academy.
+This project is for educational purposes as part of the Pluralsight Java Academy in the YearUp program.
 > ✅ README updated by Faith on May 1st!
